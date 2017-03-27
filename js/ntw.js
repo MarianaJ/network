@@ -5,9 +5,12 @@ function init() {
     document.addEventListener("deviceready",onDeviceReady, false);
 }
 
+
+document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-    navigator.notification.beep(1);
+    console.log(navigator.accelerometer);
 }
+
 function checkConnection() {
     var networkState = navigator.connection.type;
 
@@ -38,5 +41,9 @@ function onSuccess(acceleration) {
 function onError() {
     alert('onError!');
 }
+
+var options = { frequency: 3000 };  // Update every 3 seconds
+
+var watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
 
 navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
